@@ -1,0 +1,57 @@
+#################################################################################################################################
+                                                            ERRORES Y
+	   	   	                                             MALAS PRÁCTICAS
+#################################################################################################################################
+
+A continuación se enumeran los errores encontrados y su respectiva línea en el código ya corregido, como complemento al PDF. 
+
+01 - Línea 013 - #include<math.h>
+02 - Línea 029 - las macros se definen sin ;
+03 - Línea 038 - falta ; al terminar la línea
+04 - Línea 048 - sinónimo de la estructura es colisionados, no colisionado
+05 - Línea 050 - incorrecto lugar del asterisco que indica puntero en los argumentos del main, es *argv[] (no me causa error, ni warning, pero ahí no va)
+06 - Línea 055 - separa variables t y tmax con ; y no con ,
+07 - Línea 070 - FILE, no FiLE 
+08,10,14 - Línea 072,73,96 - malloc retorna puntero (void *), hay que modificar el retorno según sea el caso (en orden: (particulas *), (double *), (colisionados *) ), en el caso de la línea 72, este está dentro del argumento de la función, y no afuera
+09,11,15 - Línea 072,73,96 - Buena práctica de programación: modificar con (size_t) todo valor dudoso dentro de la función malloc() para asegurarse que todo el argumento sea de tipo entero sin signo 
+12 - Línea 078 - abre el archivo en lectura "r" pero se piensa modificar, debe ser "w"
+13 - Línea 093 - el archivo se cerraba dentro del ciclo, pero en este no se volvía a abrir, por lo que solo funcionaba cuando i=0 y no hacía nada el resto del recorrido
+16 - Línea 099 - se separan los argumentos del ciclo con ; no con ,
+17 - Línea 103 - es namefiles, no namefile
+18 - Línea 105 - es i++, no i+=
+19 - Línea 114 - es g*dt*dt, g**dt causa problemas con la sintaxis de punteros
+20 - Línea 116 - función fronteras con un argumento que no requiere, z
+21 - Línea 123 - el operador es < (menor que), no <<
+22 - Línea 127 - función colisiones requiere dos argumentos (i,j), no solo (i)
+23 - Línea 128 - estructura colisionados de choques tiene elemento id, no d 
+24 - Línea 157 - short double no es un tipo de dato válido, es double
+25 - Línea 164 - es pos[1], no pos[2] (no causa error pero retorna basura, no existe pos[2])
+26 - Línea 173 - es pos[1], no pos[-1] (no causa error pero retorna basura, no existe pos[-1])
+27 - Línea 203 - es dtaux, no dtauux
+28 - Línea 204 . función retorna int, no está retornando nada
+29 - Línea 211 - función dist(int i) retorna int, no char
+30 - Línea 217 - operador desigual es !=, no !!
+31 - Línea 231 - función colisiones tiene como argumento dos int, j no es float, es int
+32 - Línea 238 - costheta1f no se debe definir como constante, pues se piensa modificar
+33 - Línea 243 - es v1i, no v1
+34 - Línea 270 - es sin, no sen
+
+#################################################################################################################################
+============================================================================================================
+Malas prácticas de programación:
+Estas líneas me compilaron sin errores ni warnings, sin embargo se pueden corregir para tener un código más limpio.
+(podrían generar problemas al compilarse con otro compilador)
+
+Línea 037 - prototipo de la función sin el nombre de una de los argumentos, mientras que los otros sí están nombrados; reserva espacio en memoria, pero es mala práctica de programación
+Línea 077 - sobra formato %s pues solo se está imprimiendo el 0 en formato %.3d  (no sé por qué no me causa error con mi versión de gcc, evidentemente lo es y seguro no compile ni siquiera en un computador normal)
+Línea 151 - función main retorna int, pero está retornando double (0.0 y no 0)
+Línea 205 - part[i].vel[1] ya se modificó en la línea anterior, esta sobra
+Línea 227 - función retorna int, no double (0, no 0.0)
+
+Como última consideración, para no tener 35 errores sino los 34 mencionados, yo cambiaría el de la línea 50 por el de la línea 77.
+Al final no se están usando esos argumentos del main, por lo que supongo que esa es la razón para que me compile bien. Aunque después
+de compilar bien la línea 77 no es que le tenga mucha fe a mi instalación de GCC.
+
+============================================================================================================
+
+Pablo Agudelo Londoño
